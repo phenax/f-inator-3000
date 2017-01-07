@@ -1,12 +1,13 @@
 
 import React from 'react';
-
 import nlp from 'nlp_compromise';
-
-window.nlp= nlp;
 
 import FInatorInput from './FInatorInput.jsx';
 import FInatorOutput from './FInatorOutput.jsx';
+
+
+window.nlp= nlp;
+
 
 export default class FInator3000 extends React.Component {
 
@@ -14,7 +15,7 @@ export default class FInator3000 extends React.Component {
 		super(props);
 		
 		this.state= {
-			response: 'Hey dude'
+			response: '____'
 		};
 	}
 
@@ -24,19 +25,16 @@ export default class FInator3000 extends React.Component {
 
 		response
 			.terms()
-			.filter(term => term.tag === 'Noun' || term.tag === 'Adjective')
+			.filter(term => [ 'noun', 'adjective' ].indexOf(term.tag.toLowerCase()) > -1)
 			.forEach(term => {
 				term.text= 'fucking ' + term.text;
 			});
 
-		response= nlp.text(response.text());
-
 		response
 			.terms()
-			// .filter(term => term.tag === 'Verb')
+			.filter(term => [ 'what', 'how', 'why' ].indexOf(term.text.toLowerCase()) > -1)
 			.forEach(term => {
-				console.log(term);
-				// term.text= 'fucking ' + term.text;
+				term.text= term.text + ' the fuck';
 			});
 
 		return response.text();

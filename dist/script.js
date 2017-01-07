@@ -21503,15 +21503,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _nlp_compromise = __webpack_require__(181);
+	var _nlp_compromise = __webpack_require__(179);
 	
 	var _nlp_compromise2 = _interopRequireDefault(_nlp_compromise);
 	
-	var _FInatorInput = __webpack_require__(179);
+	var _FInatorInput = __webpack_require__(180);
 	
 	var _FInatorInput2 = _interopRequireDefault(_FInatorInput);
 	
-	var _FInatorOutput = __webpack_require__(180);
+	var _FInatorOutput = __webpack_require__(181);
 	
 	var _FInatorOutput2 = _interopRequireDefault(_FInatorOutput);
 	
@@ -21534,7 +21534,7 @@
 			var _this = _possibleConstructorReturn(this, (FInator3000.__proto__ || Object.getPrototypeOf(FInator3000)).call(this, props));
 	
 			_this.state = {
-				response: 'Hey dude'
+				response: '____'
 			};
 			return _this;
 		}
@@ -21546,18 +21546,15 @@
 				var response = _nlp_compromise2.default.text(string);
 	
 				response.terms().filter(function (term) {
-					return term.tag === 'Noun' || term.tag === 'Adjective';
+					return ['noun', 'adjective'].indexOf(term.tag.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
 	
-				response = _nlp_compromise2.default.text(response.text());
-	
-				response.terms()
-				// .filter(term => term.tag === 'Verb')
-				.forEach(function (term) {
-					console.log(term);
-					// term.text= 'fucking ' + term.text;
+				response.terms().filter(function (term) {
+					return ['what', 'how', 'why'].indexOf(term.text.toLowerCase()) > -1;
+				}).forEach(function (term) {
+					term.text = term.text + ' the fuck';
 				});
 	
 				return response.text();
@@ -21589,130 +21586,6 @@
 
 /***/ },
 /* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FInatorInput = function (_React$Component) {
-		_inherits(FInatorInput, _React$Component);
-	
-		function FInatorInput() {
-			_classCallCheck(this, FInatorInput);
-	
-			return _possibleConstructorReturn(this, (FInatorInput.__proto__ || Object.getPrototypeOf(FInatorInput)).apply(this, arguments));
-		}
-	
-		_createClass(FInatorInput, [{
-			key: 'onSubmit',
-			value: function onSubmit(e) {
-	
-				var text = this.refs.inputTextField.value;
-	
-				this.props.onSubmit(text, e);
-	
-				e.preventDefault();
-				return false;
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'finator__input' },
-					_react2.default.createElement(
-						'form',
-						{ onSubmit: this.onSubmit.bind(this) },
-						_react2.default.createElement('input', { type: 'textarea', ref: 'inputTextField' }),
-						_react2.default.createElement('input', { type: 'submit', value: 'Submit' })
-					)
-				);
-			}
-		}]);
-	
-		return FInatorInput;
-	}(_react2.default.Component);
-	
-	exports.default = FInatorInput;
-	
-	
-	FInatorInput.propTypes = {
-		onSubmit: _react2.default.PropTypes.func.isRequired
-	};
-
-/***/ },
-/* 180 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FInatorOutput = function (_React$Component) {
-		_inherits(FInatorOutput, _React$Component);
-	
-		function FInatorOutput() {
-			_classCallCheck(this, FInatorOutput);
-	
-			return _possibleConstructorReturn(this, (FInatorOutput.__proto__ || Object.getPrototypeOf(FInatorOutput)).apply(this, arguments));
-		}
-	
-		_createClass(FInatorOutput, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					this.props.response
-				);
-			}
-		}]);
-	
-		return FInatorOutput;
-	}(_react2.default.Component);
-	
-	exports.default = FInatorOutput;
-	
-	
-	FInatorOutput.propTypes = {
-		response: _react2.default.PropTypes.string.isRequired
-	};
-
-/***/ },
-/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;var require;/* nlp_compromise v6.5.3 MIT*/
@@ -31386,6 +31259,130 @@
 	
 	},{"../fns.js":23,"../sentence/question/question.js":57,"../sentence/statement/statement.js":63,"./sentence_parser.js":113}]},{},[24])(24)
 	});
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FInatorInput = function (_React$Component) {
+		_inherits(FInatorInput, _React$Component);
+	
+		function FInatorInput() {
+			_classCallCheck(this, FInatorInput);
+	
+			return _possibleConstructorReturn(this, (FInatorInput.__proto__ || Object.getPrototypeOf(FInatorInput)).apply(this, arguments));
+		}
+	
+		_createClass(FInatorInput, [{
+			key: 'onSubmit',
+			value: function onSubmit(e) {
+				e.preventDefault();
+	
+				var text = this.refs.inputTextField.value;
+	
+				this.props.onSubmit(text, e);
+	
+				return false;
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ className: 'finator__input' },
+					_react2.default.createElement(
+						'form',
+						{ onSubmit: this.onSubmit.bind(this) },
+						_react2.default.createElement('input', { type: 'text', ref: 'inputTextField' }),
+						_react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+					)
+				);
+			}
+		}]);
+	
+		return FInatorInput;
+	}(_react2.default.Component);
+	
+	exports.default = FInatorInput;
+	
+	
+	FInatorInput.propTypes = {
+		onSubmit: _react2.default.PropTypes.func.isRequired
+	};
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FInatorOutput = function (_React$Component) {
+		_inherits(FInatorOutput, _React$Component);
+	
+		function FInatorOutput() {
+			_classCallCheck(this, FInatorOutput);
+	
+			return _possibleConstructorReturn(this, (FInatorOutput.__proto__ || Object.getPrototypeOf(FInatorOutput)).apply(this, arguments));
+		}
+	
+		_createClass(FInatorOutput, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					this.props.response
+				);
+			}
+		}]);
+	
+		return FInatorOutput;
+	}(_react2.default.Component);
+	
+	exports.default = FInatorOutput;
+	
+	
+	FInatorOutput.propTypes = {
+		response: _react2.default.PropTypes.string.isRequired
+	};
 
 /***/ }
 /******/ ]);
