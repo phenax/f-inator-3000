@@ -11,6 +11,7 @@ export default class FInatorInput extends React.Component {
 
 	// form submit handler
 	onSubmit(e) {
+
 		e.preventDefault();
 
 		const text= this.refs.inputTextField.value;
@@ -21,13 +22,19 @@ export default class FInatorInput extends React.Component {
 	}
 
 	render() {
+
 		return (
 
 			<div style={styles.host}>
 
 				<form onSubmit={this.onSubmit.bind(this)}>
 
-					<input type='text' style={styles.input} ref={'inputTextField'} />
+					<input
+						type='text'
+						placeholder='Enter text here'
+						style={styles.input}
+						ref={'inputTextField'}
+					/>
 
 					<button style={styles.button}>Submit</button>
 

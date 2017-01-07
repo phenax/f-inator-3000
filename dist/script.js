@@ -31355,6 +31355,7 @@
 	
 			// form submit handler
 			value: function onSubmit(e) {
+	
 				e.preventDefault();
 	
 				var text = this.refs.inputTextField.value;
@@ -31366,13 +31367,19 @@
 		}, {
 			key: 'render',
 			value: function render() {
+	
 				return _react2.default.createElement(
 					'div',
 					{ style: _finator__input2.default.host },
 					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.onSubmit.bind(this) },
-						_react2.default.createElement('input', { type: 'text', style: _finator__input2.default.input, ref: 'inputTextField' }),
+						_react2.default.createElement('input', {
+							type: 'text',
+							placeholder: 'Enter text here',
+							style: _finator__input2.default.input,
+							ref: 'inputTextField'
+						}),
 						_react2.default.createElement(
 							'button',
 							{ style: _finator__input2.default.button },
@@ -31436,7 +31443,16 @@
 				return _react2.default.createElement(
 					'div',
 					{ style: _finator__output2.default.host },
-					this.props.response
+					_react2.default.createElement(
+						'div',
+						{ style: _finator__output2.default.header },
+						'Your awesome text:'
+					),
+					_react2.default.createElement(
+						'div',
+						{ style: _finator__output2.default.content },
+						this.props.response
+					)
 				);
 			}
 		}]);
@@ -31463,7 +31479,8 @@
 	exports.default = {
 	
 		host: {
-			padding: '1em',
+	
+			padding: '3em 1.5em',
 	
 			maxWidth: '600px',
 	
@@ -31471,17 +31488,22 @@
 	
 			textAlign: 'center',
 	
-			backgroundColor: '#ccc'
+			backgroundColor: '#fff',
+	
+			boxShadow: '0 2px 6px 1px rgba(0,0,0,.2)',
+	
+			borderRadius: '3px'
 		},
 	
 		header: {
 	
-			fontSize: '1.6em',
+			fontSize: '2em',
 	
-			padding: '1.5em 0 1em',
+			padding: '1em 0',
 	
-			textTransform: 'uppercase'
+			textTransform: 'uppercase',
 	
+			fontWeight: '400'
 		}
 	};
 
@@ -31506,8 +31528,9 @@
 			padding: '.6em .8em',
 			fontSize: '1em',
 			outline: 'none',
-			border: '1px solid #ccc',
-			textAlign: 'center'
+			border: 'none',
+			textAlign: 'center',
+			borderBottom: '2px solid #ddd'
 		},
 	
 		button: {
@@ -31517,7 +31540,8 @@
 			margin: '.5em 0',
 			outline: 'none',
 			border: 'none',
-			backgroundColor: '#222',
+			backgroundColor: '#3f51b5',
+			textTransform: 'uppercase',
 			cursor: 'pointer',
 			color: '#fff'
 		}
@@ -31541,7 +31565,25 @@
 	
 			margin: '1em 0 0',
 	
-			padding: '1em 0'
+			padding: '1em 0',
+	
+			fontWeight: '100'
+		},
+	
+		header: {
+	
+			fontWeight: '400',
+	
+			textAlign: 'left',
+	
+			fontSize: '.7em'
+		},
+	
+		content: {
+	
+			backgroundColor: '#eee',
+	
+			padding: '.8em'
 		}
 	};
 

@@ -11,8 +11,9 @@ export default {
 		padding: '.6em .8em',
 		fontSize: '1em',
 		outline: 'none',
-		border: '1px solid #ccc',
-		textAlign: 'center'
+		border: 'none',
+		textAlign: 'center',
+		borderBottom: '2px solid #ddd',
 	},
 
 	button: {
@@ -22,7 +23,8 @@ export default {
 		margin: '.5em 0',
 		outline: 'none',
 		border: 'none',
-		backgroundColor: '#222',
+		backgroundColor: '#3f51b5',
+		textTransform: 'uppercase',
 		cursor: 'pointer',
 		color: '#fff',
 	}
