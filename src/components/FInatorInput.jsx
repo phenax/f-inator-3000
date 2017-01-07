@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import styles from '../styles/finator__input';
+
 
 /**
  * Fuckinator input
@@ -21,13 +23,13 @@ export default class FInatorInput extends React.Component {
 	render() {
 		return (
 
-			<div>
+			<div style={styles.host}>
 
 				<form onSubmit={this.onSubmit.bind(this)}>
 
-					<input type='text' ref={'inputTextField'} />
+					<input type='text' style={styles.input} ref={'inputTextField'} />
 
-					<input type='submit' value='Submit' />
+					<button style={styles.button}>Submit</button>
 
 				</form>
 
