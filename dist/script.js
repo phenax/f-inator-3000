@@ -21515,6 +21515,10 @@
 	
 	var _FInatorOutput2 = _interopRequireDefault(_FInatorOutput);
 	
+	var _finator = __webpack_require__(182);
+	
+	var _finator2 = _interopRequireDefault(_finator);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21523,34 +21527,48 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	window.nlp = _nlp_compromise2.default;
-	
+	/**
+	 * Fuckinator 3000 app component
+	 */
 	var FInator3000 = function (_React$Component) {
 		_inherits(FInator3000, _React$Component);
 	
 		function FInator3000(props) {
 			_classCallCheck(this, FInator3000);
 	
+			// Default message
 			var _this = _possibleConstructorReturn(this, (FInator3000.__proto__ || Object.getPrototypeOf(FInator3000)).call(this, props));
 	
 			_this.state = {
-				response: '____'
+				response: 'Hey there! Let me make your string fucking awesome'
 			};
 			return _this;
 		}
+	
+		/**
+	  * Fuckinate the string
+	  * 
+	  * @param  {string} string  Input text
+	  * 
+	  * @return {string}         Fuckinated awesome text
+	  */
+	
 	
 		_createClass(FInator3000, [{
 			key: '_finateText',
 			value: function _finateText(string) {
 	
+				// Convert string into nlp object
 				var response = _nlp_compromise2.default.text(string);
 	
+				// Add 'fucking' before nouns
 				response.terms().filter(function (term) {
-					return ['noun', 'adjective'].indexOf(term.tag.toLowerCase()) > -1;
+					return ['noun'].indexOf(term.tag.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
 	
+				// Add tf after question words
 				response.terms().filter(function (term) {
 					return ['what', 'how', 'why'].indexOf(term.text.toLowerCase()) > -1;
 				}).forEach(function (term) {
@@ -21559,6 +21577,14 @@
 	
 				return response.text();
 			}
+	
+			/**
+	   * For submit handler
+	   * 
+	   * @param  {string} text  The text from input
+	   * @param  {Event}  e
+	   */
+	
 		}, {
 			key: 'onSubmit',
 			value: function onSubmit(text) {
@@ -21572,9 +21598,9 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'finator' },
-					_react2.default.createElement(_FInatorInput2.default, { onSubmit: this.onSubmit.bind(this) }),
-					_react2.default.createElement(_FInatorOutput2.default, { response: this.state.response })
+					{ style: _finator2.default },
+					_react2.default.createElement(_FInatorOutput2.default, { response: this.state.response }),
+					_react2.default.createElement(_FInatorInput2.default, { onSubmit: this.onSubmit.bind(this) })
 				);
 			}
 		}]);
@@ -31284,6 +31310,9 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	/**
+	 * Fuckinator input
+	 */
 	var FInatorInput = function (_React$Component) {
 		_inherits(FInatorInput, _React$Component);
 	
@@ -31295,6 +31324,9 @@
 	
 		_createClass(FInatorInput, [{
 			key: 'onSubmit',
+	
+	
+			// form submit handler
 			value: function onSubmit(e) {
 				e.preventDefault();
 	
@@ -31309,7 +31341,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'finator__input' },
+					null,
 					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.onSubmit.bind(this) },
@@ -31382,6 +31414,27 @@
 	
 	FInatorOutput.propTypes = {
 		response: _react2.default.PropTypes.string.isRequired
+	};
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+	
+		padding: '1em',
+	
+		maxWidth: '800px',
+	
+		margin: '1em auto',
+	
+		textAlign: 'center'
+	
 	};
 
 /***/ }

@@ -1,8 +1,13 @@
 
 import React from 'react';
 
+
+/**
+ * Fuckinator input
+ */
 export default class FInatorInput extends React.Component {
 
+	// form submit handler
 	onSubmit(e) {
 		e.preventDefault();
 
@@ -16,7 +21,7 @@ export default class FInatorInput extends React.Component {
 	render() {
 		return (
 
-			<div className='finator__input'>
+			<div>
 
 				<form onSubmit={this.onSubmit.bind(this)}>
 
