@@ -21563,7 +21563,7 @@
 	
 				// Add 'fucking' before nouns
 				response.terms().filter(function (term) {
-					return ['noun'].indexOf(term.tag.toLowerCase()) > -1;
+					return ['noun', 'infinitive'].indexOf(term.tag.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
@@ -21589,16 +21589,39 @@
 			key: 'onSubmit',
 			value: function onSubmit(text) {
 	
-				var response = this._finateText(text);
+				var response = this.generateRandomError();
+	
+				if (text.length > 0) response = this._finateText(text);
 	
 				this.setState({ response: response });
+			}
+	
+			/**
+	   * Generate a random error message
+	   * 
+	   * @return {string}  Error message
+	   */
+	
+		}, {
+			key: 'generateRandomError',
+			value: function generateRandomError() {
+	
+				var errorMessages = ['Fucking type something you piece of shit', 'Stop fucking around', 'Are you fucking kidding me?', 'This would\'ve been a lot simpler if you weren\'t a fucking idiot', 'Do I have to blow you to make you type something?'];
+	
+				return errorMessages[Math.floor(Math.random() * errorMessages.length)];
 			}
 		}, {
 			key: 'render',
 			value: function render() {
+	
 				return _react2.default.createElement(
 					'div',
-					{ style: _finator2.default },
+					{ style: _finator2.default.host },
+					_react2.default.createElement(
+						'h2',
+						{ style: _finator2.default.header },
+						'Fuckinator 3000'
+					),
 					_react2.default.createElement(_FInatorOutput2.default, { response: this.state.response }),
 					_react2.default.createElement(_FInatorInput2.default, { onSubmit: this.onSubmit.bind(this) })
 				);
@@ -31302,6 +31325,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _finator__input = __webpack_require__(183);
+	
+	var _finator__input2 = _interopRequireDefault(_finator__input);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31341,12 +31368,16 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ style: _finator__input2.default.host },
 					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.onSubmit.bind(this) },
-						_react2.default.createElement('input', { type: 'text', ref: 'inputTextField' }),
-						_react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+						_react2.default.createElement('input', { type: 'text', style: _finator__input2.default.input, ref: 'inputTextField' }),
+						_react2.default.createElement(
+							'button',
+							{ style: _finator__input2.default.button },
+							'Submit'
+						)
 					)
 				);
 			}
@@ -31378,6 +31409,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _finator__output = __webpack_require__(184);
+	
+	var _finator__output2 = _interopRequireDefault(_finator__output);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31400,7 +31435,7 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ style: _finator__output2.default.host },
 					this.props.response
 				);
 			}
@@ -31427,14 +31462,87 @@
 	});
 	exports.default = {
 	
-		padding: '1em',
+		host: {
+			padding: '1em',
 	
-		maxWidth: '800px',
+			maxWidth: '600px',
 	
-		margin: '1em auto',
+			margin: '1em auto',
 	
-		textAlign: 'center'
+			textAlign: 'center',
 	
+			backgroundColor: '#ccc'
+		},
+	
+		header: {
+	
+			fontSize: '1.6em',
+	
+			padding: '1.5em 0 1em',
+	
+			textTransform: 'uppercase'
+	
+		}
+	};
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+	
+		host: {
+			padding: '2em 0'
+		},
+	
+		input: {
+			display: 'block',
+			width: '100%',
+			padding: '.6em .8em',
+			fontSize: '1em',
+			outline: 'none',
+			border: '1px solid #ccc',
+			textAlign: 'center'
+		},
+	
+		button: {
+			padding: '.8em 0',
+			display: 'block',
+			width: '100%',
+			margin: '.5em 0',
+			outline: 'none',
+			border: 'none',
+			backgroundColor: '#222',
+			cursor: 'pointer',
+			color: '#fff'
+		}
+	
+	};
+
+/***/ },
+/* 184 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+	
+		host: {
+	
+			fontSize: '1.1em',
+	
+			margin: '1em 0 0',
+	
+			padding: '1em 0'
+		}
 	};
 
 /***/ }
