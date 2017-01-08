@@ -8,4 +8,3 @@ render(
 	<FInator3000 />,
 	document.getElementById('appRoot')
 );
-
