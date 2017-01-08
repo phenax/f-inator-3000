@@ -21511,11 +21511,11 @@
 	
 	var _FInatorInput2 = _interopRequireDefault(_FInatorInput);
 	
-	var _FInatorOutput = __webpack_require__(181);
+	var _FInatorOutput = __webpack_require__(182);
 	
 	var _FInatorOutput2 = _interopRequireDefault(_FInatorOutput);
 	
-	var _finator = __webpack_require__(182);
+	var _finator = __webpack_require__(184);
 	
 	var _finator2 = _interopRequireDefault(_finator);
 	
@@ -21561,15 +21561,28 @@
 				// Convert string into nlp object
 				var response = _nlp_compromise2.default.text(string);
 	
+				var terms = response.terms();
+	
+				// console.log(terms);
+	
 				// Add 'fucking' before nouns
-				response.terms().filter(function (term) {
+				terms.filter(function (term) {
 					return ['noun', 'infinitive'].indexOf(term.tag.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
 	
+				// Add 'fucking' before postpositive adjectives
+				terms.filter(function (term) {
+					return term.tag.toLowerCase() === 'adjective';
+				}).filter(function (term, i) {
+					return i + 1 === terms.length || terms[i + 1].tag === 'Noun';
+				}).forEach(function (term) {
+					term.text = 'fucking ' + term.text;
+				});
+	
 				// Add tf after question words
-				response.terms().filter(function (term) {
+				terms.filter(function (term) {
 					return ['what', 'how', 'why'].indexOf(term.text.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = term.text + ' the fuck';
@@ -21589,9 +21602,9 @@
 			key: 'onSubmit',
 			value: function onSubmit(text) {
 	
-				var response = this.generateRandomError();
+				var response = void 0;
 	
-				if (text.length > 0) response = this._finateText(text);
+				if (text.length > 0) response = this._finateText(text);else response = this.generateRandomError();
 	
 				this.setState({ response: response });
 			}
@@ -21606,7 +21619,7 @@
 			key: 'generateRandomError',
 			value: function generateRandomError() {
 	
-				var errorMessages = ['Fucking type something you piece of shit', 'Stop fucking around', 'Are you fucking kidding me?', 'This would\'ve been a lot simpler if you weren\'t a fucking idiot', 'Do I have to blow you to make you type something?'];
+				var errorMessages = ['Fucking type something you piece of shit', 'Stop fucking around', 'Are you fucking kidding me?', 'This would\'ve been a lot simpler if you weren\'t a fucking idiot', 'Do I have to blow you to make you type something?', 'I bet you are one of the people who think that global warming is a fucking conspiracy'];
 	
 				return errorMessages[Math.floor(Math.random() * errorMessages.length)];
 			}
@@ -31325,7 +31338,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _finator__input = __webpack_require__(183);
+	var _finator__input = __webpack_require__(181);
 	
 	var _finator__input2 = _interopRequireDefault(_finator__input);
 	
@@ -31402,6 +31415,47 @@
 
 /***/ },
 /* 181 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+	
+		host: {
+			padding: '2em 0'
+		},
+	
+		input: {
+			display: 'block',
+			width: '100%',
+			padding: '.6em .8em',
+			fontSize: '1em',
+			outline: 'none',
+			border: 'none',
+			textAlign: 'center',
+			borderBottom: '2px solid #ddd'
+		},
+	
+		button: {
+			padding: '.8em 0',
+			display: 'block',
+			width: '100%',
+			margin: '.5em 0',
+			outline: 'none',
+			border: 'none',
+			backgroundColor: '#3f51b5',
+			textTransform: 'uppercase',
+			cursor: 'pointer',
+			color: '#fff'
+		}
+	
+	};
+
+/***/ },
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31416,7 +31470,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _finator__output = __webpack_require__(184);
+	var _finator__output = __webpack_require__(183);
 	
 	var _finator__output2 = _interopRequireDefault(_finator__output);
 	
@@ -31468,7 +31522,46 @@
 	};
 
 /***/ },
-/* 182 */
+/* 183 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = {
+	
+		host: {
+	
+			fontSize: '1.1em',
+	
+			margin: '1em 0 0',
+	
+			padding: '1em 0',
+	
+			fontWeight: '100'
+		},
+	
+		header: {
+	
+			fontWeight: '400',
+	
+			textAlign: 'left',
+	
+			fontSize: '.7em'
+		},
+	
+		content: {
+	
+			backgroundColor: '#eee',
+	
+			padding: '.8em'
+		}
+	};
+
+/***/ },
+/* 184 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31504,86 +31597,6 @@
 			textTransform: 'uppercase',
 	
 			fontWeight: '400'
-		}
-	};
-
-/***/ },
-/* 183 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = {
-	
-		host: {
-			padding: '2em 0'
-		},
-	
-		input: {
-			display: 'block',
-			width: '100%',
-			padding: '.6em .8em',
-			fontSize: '1em',
-			outline: 'none',
-			border: 'none',
-			textAlign: 'center',
-			borderBottom: '2px solid #ddd'
-		},
-	
-		button: {
-			padding: '.8em 0',
-			display: 'block',
-			width: '100%',
-			margin: '.5em 0',
-			outline: 'none',
-			border: 'none',
-			backgroundColor: '#3f51b5',
-			textTransform: 'uppercase',
-			cursor: 'pointer',
-			color: '#fff'
-		}
-	
-	};
-
-/***/ },
-/* 184 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = {
-	
-		host: {
-	
-			fontSize: '1.1em',
-	
-			margin: '1em 0 0',
-	
-			padding: '1em 0',
-	
-			fontWeight: '100'
-		},
-	
-		header: {
-	
-			fontWeight: '400',
-	
-			textAlign: 'left',
-	
-			fontSize: '.7em'
-		},
-	
-		content: {
-	
-			backgroundColor: '#eee',
-	
-			padding: '.8em'
 		}
 	};
 

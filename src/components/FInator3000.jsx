@@ -34,18 +34,27 @@ export default class FInator3000 extends React.Component {
 		// Convert string into nlp object
 		let response= nlp.text(string);
 
+		const terms= response.terms();
+
+		// console.log(terms);
 
 		// Add 'fucking' before nouns
-		response
-			.terms()
+		terms
 			.filter(term => [ 'noun', 'infinitive' ].indexOf(term.tag.toLowerCase()) > -1)
 			.forEach(term => {
 				term.text= 'fucking ' + term.text;
 			});
 
+		// Add 'fucking' before postpositive adjectives
+		terms
+			.filter(term => term.tag.toLowerCase() === 'adjective')
+			.filter((term, i) => i + 1 === terms.length || terms[i + 1].tag === 'Noun')
+			.forEach(term => {
+				term.text= 'fucking ' + term.text;
+			});
+
 		// Add tf after question words
-		response
-			.terms()
+		terms
 			.filter(term => [ 'what', 'how', 'why' ].indexOf(term.text.toLowerCase()) > -1)
 			.forEach(term => {
 				term.text= term.text + ' the fuck';
@@ -63,10 +72,12 @@ export default class FInator3000 extends React.Component {
 	 */
 	onSubmit(text) {
 
-		let response= this.generateRandomError();
+		let response;
 
 		if(text.length > 0)
 			response= this._finateText(text);
+		else
+			response= this.generateRandomError();
 
 		this.setState({ response });
 	}
@@ -85,6 +96,7 @@ export default class FInator3000 extends React.Component {
 			'Are you fucking kidding me?',
 			'This would\'ve been a lot simpler if you weren\'t a fucking idiot',
 			'Do I have to blow you to make you type something?',
+			'I bet you are one of the people who think that global warming is a fucking conspiracy',
 		];
 
 		return errorMessages[Math.floor(Math.random()*errorMessages.length)];
