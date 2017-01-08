@@ -1,27 +1,21 @@
 
 const routes= require('./routes');
+const extend= require('./utils');
 
 module.exports= (req, res) => {
 
-	res.json= (json, status) => {
-
-		res.writeHead(status || 200, {
-			'Content-Type': 'application/json'
-		});
-
-		res.end(JSON.stringify(json));
-	};
+	extend(req, res);
 
 	let route;
 
-	if(routes.has(req.url)) {
-		route= routes.get(req.url);
-	} else {
-		route= routes.get('#ERROR_404');
-	}
+	console.log(req.path);
+	console.log(req.path.pathname);
 
-	if(typeof route === 'function') {
+	if(routes.has(req.path.pathname))
+		route= routes.get(req.path.pathname);
+	else
+		route= routes.get('#ERROR_404');
+
+	if(typeof route === 'function')
 		route(req, res);
-		return;
-	}
 };
