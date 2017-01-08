@@ -31440,13 +31440,15 @@
 		},
 	
 		button: {
-			padding: '.8em 0',
+			padding: '1em 0',
 			display: 'block',
 			width: '100%',
 			margin: '.5em 0',
 			outline: 'none',
 			border: 'none',
 			backgroundColor: '#3f51b5',
+			borderRadius: '2px',
+			boxShadow: '0 1px 3px 1px rgba(0,0,0,.3)',
 			textTransform: 'uppercase',
 			cursor: 'pointer',
 			color: '#fff'
@@ -31555,6 +31557,8 @@
 		content: {
 	
 			backgroundColor: '#eee',
+	
+			borderTop: '1px solid #3f51b5',
 	
 			padding: '.8em'
 		}

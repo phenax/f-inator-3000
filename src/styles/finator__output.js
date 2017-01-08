@@ -26,6 +26,8 @@ export default {
 
 		backgroundColor: '#eee',
 
+		borderTop: '1px solid #3f51b5',
+
 		padding: '.8em',
 	}
 };
