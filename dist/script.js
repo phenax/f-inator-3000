@@ -21563,11 +21563,11 @@
 	
 				var terms = response.terms();
 	
-				// console.log(terms);
+				console.log(terms);
 	
 				// Add 'fucking' before nouns
 				terms.filter(function (term) {
-					return ['noun', 'infinitive'].indexOf(term.tag.toLowerCase()) > -1;
+					return ['noun', 'infinitive', 'hashtag'].indexOf(term.tag.toLowerCase()) > -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
