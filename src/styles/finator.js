@@ -28,5 +28,22 @@ export default {
 		textTransform: 'uppercase',
 
 		fontWeight: '400',
+	},
+
+
+	shareBtn: {
+
+		outline: 'none',
+		border: 'none',
+		padding: '.5em 1em',
+		cursor: 'pointer',
+
+		backgroundColor: '#3f51b5',
+
+		color: '#fff',
+
+		borderRadius: '2px',
+
+		boxShadow: '0 1px 2px 1px rgba(0,0,0,.2)'
 	}
 };

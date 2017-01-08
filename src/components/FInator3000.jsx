@@ -17,9 +17,21 @@ export default class FInator3000 extends React.Component {
 	constructor(props) {
 		super(props);
 
+		window.fbAsyncInit = function() {
+
+			window.FB.init({
+				appId      : '[Your App ID]',
+				xfbml      : true,
+				version    : 'v2.8'
+			});
+
+			window.FB.AppEvents.logPageView();
+		};
+
 		// Default message
 		this.state= {
-			response: 'Hey there! Let me make your string fucking awesome'
+			response: 'Hey there! Let me make your string fucking awesome',
+			request: null
 		};
 	}
 
@@ -51,7 +63,7 @@ export default class FInator3000 extends React.Component {
 		else
 			response= this.generateRandomError();
 
-		this.setState({ response });
+		this.setState({ response, request: text });
 	}
 
 
@@ -75,6 +87,25 @@ export default class FInator3000 extends React.Component {
 	}
 
 
+	/**
+	 * Shares a post on facebook when the button is clicked
+	 */
+	fbShareButtonClick() {
+
+		const quoteMessage= 
+			(this.state.request) ?
+				`Fuckinator fuckinated my fucking text from "${this.state.request}" to: "${this.state.response}"`: null;
+
+		window.FB.ui({
+			method: 'share',
+			href: 'http://fuckinator.herokuapp.com/',
+			hashtag: '#fuckinator',
+			mobile_iframe: true,
+			quote: quoteMessage,
+		}, res => {});
+	}
+
+
 	render() {
 
 		return (
@@ -86,6 +117,13 @@ export default class FInator3000 extends React.Component {
 				<FInatorOutput response={this.state.response} />
 
 				<FInatorInput onSubmit={this.onSubmit.bind(this)} />
+
+				{
+					(this.state.request)?
+						(<div style={{ textAlign: 'right' }}>
+							<button style={styles.shareBtn} onClick={this.fbShareButtonClick.bind(this)}>Share on facebook</button>
+						</div>): null
+				}
 
 			</div>
 		);
