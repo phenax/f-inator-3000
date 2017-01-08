@@ -36,11 +36,11 @@ export default class FInator3000 extends React.Component {
 
 		const terms= response.terms();
 
-		console.log(terms);
 
 		// Add 'fucking' before nouns
 		terms
 			.filter(term => [ 'noun', 'infinitive', 'hashtag' ].indexOf(term.tag.toLowerCase()) > -1)
+			.filter(term => term.text.indexOf('@') === -1)
 			.forEach(term => {
 				term.text= 'fucking ' + term.text;
 			});
@@ -60,6 +60,7 @@ export default class FInator3000 extends React.Component {
 				term.text= term.text + ' the fuck';
 			});
 
+		// Back to fucking sentences
 		return response.text();
 	}
 

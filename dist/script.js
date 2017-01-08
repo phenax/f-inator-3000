@@ -21563,11 +21563,11 @@
 	
 				var terms = response.terms();
 	
-				console.log(terms);
-	
 				// Add 'fucking' before nouns
 				terms.filter(function (term) {
 					return ['noun', 'infinitive', 'hashtag'].indexOf(term.tag.toLowerCase()) > -1;
+				}).filter(function (term) {
+					return term.text.indexOf('@') === -1;
 				}).forEach(function (term) {
 					term.text = 'fucking ' + term.text;
 				});
@@ -21588,6 +21588,7 @@
 					term.text = term.text + ' the fuck';
 				});
 	
+				// Back to fucking sentences
 				return response.text();
 			}
 	
