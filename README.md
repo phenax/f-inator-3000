@@ -10,7 +10,7 @@ clk da lnk below 2 prove dat u r nt a lil grl. k thnx bye.
 
 ### JSON API
 
-URL - `not_hosted_yet`
+URL - `https://fuckinator.herokuapp.com/`
 
 
 ```/fuckinate?query=[Your query]```
