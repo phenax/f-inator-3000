@@ -20,7 +20,7 @@ export default class FInator3000 extends React.Component {
 		window.fbAsyncInit = function() {
 
 			window.FB.init({
-				appId      : '[Your App ID]',
+				appId      : '249015198865938',
 				xfbml      : true,
 				version    : 'v2.8'
 			});
