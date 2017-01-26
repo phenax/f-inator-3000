@@ -11,7 +11,7 @@ Convert a sentence into a fucking great sentence.
 
 clk da lnk below 2 prove dat u r nt a lil grl. k thnx bye.
 
-[Preview](https://fuckinator.herokuapp.com/)
+[Visit Fuckinator 3000](https://fuckinator.herokuapp.com/)
 
 
 
