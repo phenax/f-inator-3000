@@ -1,5 +1,7 @@
 
 # Fuckinator-3000
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/phenax/f-inator-3000.svg)](https://greenkeeper.io/)
 Convert a sentence into a fucking great sentence.
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-resentment.svg)](https://phenax.github.io)
